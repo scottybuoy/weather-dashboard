@@ -8,7 +8,7 @@ var searchForm = document.querySelector("#search-form");
 var searchInputEl = $("#search-bar");
 var cityNameEl = $("#city-name-display");
 var cityNameElVan = document.querySelector("#city-name-display");
-var dateEl = $("#date-span");
+
 var tempEl = $("#temp-span");
 var humidityEl = $("#humidity-span");
 var windEl = $("#wind-speed-span");
@@ -20,10 +20,10 @@ var humiditySpan = $("#humidity-span");
 var windSpeedSpan = $("#wind-speed-span");
 var uvSpan = $("uv-span");
 var forecastContainer = $("#five-day-container");
-var forecastCard = $("<div>");
-var forecastDateEl = $("<h4>");
-var forecastTempEl = $("<p>");
-var forecastHumidityEl = $("<p>");
+
+var forecast = [foreCast1, foreCast2, foreCast3, foreCast4, foreCast5];
+
+
 
 // var today = moment().format('l');
 
@@ -55,7 +55,14 @@ function apiQuery() {
     .then (function (data) {
         var firstResponse = data;
         var requestOneCallUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=imperial&appid=${apiKey}`;
+
+        console.log("current weather" + data)
+
         cityNameEl.text(data[0].name)
+        var dateEl = $("<span>");
+        dateEl.attr("id", "date-span");
+        dateEl.text(now);
+        cityNameEl.append(dateEl);
         return fetch(requestOneCallUrl);
     })
     .then (function (response) {
@@ -72,19 +79,24 @@ function apiQuery() {
         //dynamically create forecast cards 
 
         // forecastCard.attr("class", "col-lg-2 five-test");
-        // forecastContainer.append(forecastCard);
+        // forecastContainer.append(forecastCard); 
         // forecastCard.append(forecastDateEl);
         // forecastDateEl.text(foreCast1);
 
         for (i = 0; i < 5; i++) {
+            var forecastCard = $("<div>");
             forecastCard.attr("class", "col-lg-2 five-test");
             forecastContainer.append(forecastCard);
+            var forecastDateEl = $("<h4>");
+            var forecastTempEl = $("<p>");
+            var forecastHumidityEl = $("<p>");
             forecastCard.append(forecastDateEl);
             forecastCard.append(forecastTempEl);
             forecastCard.append(forecastHumidityEl);
-            forecastDateEl.text(foreCast1);
+            forecastDateEl.text(forecast[i]);
             forecastTempEl.text("Temp: " + oneCallData.daily[i].temp.day);
-            
+            forecastHumidityEl.text("Humidity: " + oneCallData.daily[i].humidity)
+            console.log(i);
         }
         
 
@@ -94,7 +106,6 @@ function apiQuery() {
 
 searchForm.addEventListener("submit", formSubmitHandler);
 
-console.log(now);
-console.log(foreCast1);
+
 
 // exclude={part}&
