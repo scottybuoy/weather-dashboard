@@ -127,7 +127,7 @@ function apiQuery() {
     var cityNameTest = searchElVanilla.value.trim();
     var citySplit = cityNameTest.split(" ");
     var cityJoin = citySplit.join("+");
-    var requestGeoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityJoin}&limit=&appid=${apiKey}`;
+    var requestGeoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityJoin}&limit=&appid=${apiKey}`;
     
    
     fetch (requestGeoUrl) 

@@ -20,7 +20,7 @@ Using a fixed search bar, this weather dashboard application is designed to dyna
 
 
 ## Functionality
-![A preview of the planner's functionality](https://media.giphy.com/media/LQ6zNflM0RLQx1Hrhp/giphy.gif)
+![A preview of the planner's functionality](https://media.giphy.com/media/AVVnl4VYusrsUVsDVY/giphy.gif)
 
 
 ## Authors
